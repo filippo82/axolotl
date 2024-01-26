@@ -92,6 +92,9 @@ def do_merge_lora(
             progressbar=True,
         )
         tokenizer.save_pretrained(str(Path(cfg.output_dir) / "merged"))
+        if cfg.hub_model_id:
+            model.push_to_hub(repo_id=cfg.hub_model_id)
+            tokenizer.push_to_hub(repo_id=cfg.hub_model_id)
 
 
 def do_inference(
